@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class LoginResponseDTO {
 	
+	private int id;
 	private String token;
 	private String accessUrl;
 }

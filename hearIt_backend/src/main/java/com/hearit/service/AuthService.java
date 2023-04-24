@@ -67,6 +67,7 @@ public class AuthService {
 		String token = jwtService.generateToken(user);
 		
 		return LoginResponseDTO.builder()
+				.id(user.getId())
 				.token(token)
 				.accessUrl(spotifyService.getAccesUrl())
 				.build();

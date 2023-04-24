@@ -93,6 +93,7 @@ public class AuthControllerTest {
 				.password("12345678")
 				.build();
 		LoginResponseDTO expected = new LoginResponseDTO().builder()
+				.id(0)
 				.token("aaaaaaa.eeeeeeeeee.ccccccccc")
 				.accessUrl("url")
 				.build();

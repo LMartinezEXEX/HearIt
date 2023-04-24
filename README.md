@@ -31,7 +31,7 @@ mysql> exit
 ```
 
 
-### Install
+### Install and run the server
 
 ```bash
 # Clone repository
@@ -43,6 +43,8 @@ $ cd hearIt_backend
 # Install dependencies and run it with maven
 $ mvn spring-boot:run
 ```
+
+> The server will run on `localhost`, port `8080`.
 
 ### Test
 
