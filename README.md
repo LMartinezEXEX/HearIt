@@ -54,3 +54,25 @@ Some basic test for the controllers were made, they can be run with the followin
 # Inside hearIt_backend
 $ mvn test
 ```
+
+## Frontend
+
+Frontend developed with Angular CLI which connects to the Backend through `localhost` port 8080.
+
+### Install and run the server
+
+```bash
+# If you havent already cloned the repository
+$ git clone https://github.com/LMartinezEXEX/HearIt.git && cd HearIt
+
+# Go to frotnend directory
+$ cd hearIt_frontend
+
+# Install npm dependencies
+$ npm install
+
+# Start the server
+$ ng serve
+```
+
+This will run on `localhost`, port `4200`. This should not be changed due to Spotify API redirection to this location.

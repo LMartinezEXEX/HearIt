@@ -1,0 +1,17 @@
+<div class="track-card">
+    <img src="{{this.image_url}}">
+
+    <div class="data">
+        <p class="name">{{name}}</p>
+        <p class="artist">{{artist}}</p>
+        <p class="album">{{album_name}}</p>
+    </div>
+
+    <span *ngIf="!isFavorite" (click)="addFavorite()" class="material-symbols-outlined favorite">
+        favorite
+    </span>
+    <span *ngIf="isFavorite" (click)="removeFavorite()" class="material-symbols-outlined filled favorite">
+        favorite
+    </span>
+    
+</div>

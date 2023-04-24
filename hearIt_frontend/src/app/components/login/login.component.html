@@ -1,0 +1,42 @@
+<div id="login">
+  <h1>Login</h1>
+  <p class="error-ocurred" *ngIf="error">User or password incorrect.</p>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="form-group">
+    
+    <div class="input-container">
+      <input 
+      required
+      ngModel 
+      name="username"
+      #username="ngModel"
+      type="text" 
+      class="form-control"
+      placeholder="Username"/>
+      <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
+        <div *ngIf="username.errors?.['required']">Username required.</div>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input 
+      required
+      minlength="5"
+      ngModel 
+      name="password"
+      #password="ngModel"
+      type="password" 
+      class="form-control"
+      placeholder="Password"/>
+      <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+        <div *ngIf="password.errors?.['required']">Password required.</div>
+        <div *ngIf="password.errors?.['minlength']">Password should be minimum {{ password.errors?.['minlength'].requiredLength }} characters.</div>
+      </div>
+    </div>
+
+    <div class="input-container notVisible">
+      <input>
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>    
+</div>

@@ -1,0 +1,67 @@
+#register {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+#register > h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: .5rem;
+    text-align: right;
+    color: #ffffff;
+}
+
+.successfull,
+.error-ocurred {
+    font-size: 13px;
+    padding: .3rem .5rem;
+}
+
+.successfull {
+    background-color: #008000;
+}
+
+.error-ocurred {
+    background-color: #ff0000;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+form input {
+    padding: .9rem;
+    background-color: #08090B;
+    border: none;
+    color: #ffffff;
+}
+
+form > button {
+    padding: .6rem;
+    width: 100%;
+    border: none;
+    transition: background-color .4s ease;
+}
+
+form > button:enabled {
+    background-color: #7c0000;
+}
+
+form > button:enabled:hover {
+    cursor: pointer;
+}
+
+.alert {
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+  
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}

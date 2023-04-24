@@ -1,0 +1,38 @@
+<div id="home">
+
+    <div class="top-var">
+        <h1>HearIt!</h1>
+
+        <a class="favorites" href="/home">
+            <span class="material-symbols-outlined filled favorite">
+                favorite
+            </span>
+            Favorites
+        </a>
+
+        <form [formGroup]="searchForm">
+            <input type="text" placeholder="Search song" formControlName="search" class="p-2 rounded-lg shadow-sm" spellcheck="false">
+            <span class="material-symbols-outlined search-icon">
+                search
+            </span>
+        </form>
+
+        <button id="logOut" (click)="logOut()">LogOut</button>
+    </div>
+
+    <ng-container *ngIf="trackList?.length; else NoData;">
+
+        <div class="grid-container">
+            <div class="tracks-grid">
+                <div *ngFor="let _track of trackList">
+                    <app-track-card [track]="_track"></app-track-card>
+                </div>
+            </div>
+        </div>
+
+    </ng-container>
+
+    <ng-template #NoData>
+        <h2 id="no-data">Search and save your favorite tracks! ;)</h2>
+    </ng-template>
+</div>

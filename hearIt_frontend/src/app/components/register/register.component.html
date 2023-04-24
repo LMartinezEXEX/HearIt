@@ -1,0 +1,58 @@
+<div id="register">
+  <h1>Register</h1>
+  <p class="successfull" *ngIf="created">User created successfully!</p>
+  <p class="error-ocurred" *ngIf="error">An error occured! Try again.</p>
+  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" class="form-group">
+
+    <div class="input-container">
+      <input 
+      required
+      minlength="5"
+      maxlength="20"
+      ngModel 
+      name="username"
+      #username="ngModel"
+      type="text" 
+      class="form-control"
+      placeholder="Username"/>
+      <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
+        <div *ngIf="username.errors?.['required']">Username required.</div>
+        <div *ngIf="username.errors?.['minlength']">Username should be minimum {{ username.errors?.['minlength'].requiredLength }} characters.</div>
+        <div *ngIf="username.errors?.['maxlength']">Username should be maximum {{ username.errors?.['maxlength'].requiredLength }} characters.</div>
+      </div>
+    </div>
+    
+    <div class="input-container">
+      <input 
+      required
+      minlength="5"
+      ngModel 
+      name="password"
+      #password="ngModel"
+      type="password" 
+      class="form-control"
+      placeholder="Password"/>
+      <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+        <div *ngIf="password.errors?.['required']">Password required.</div>
+        <div *ngIf="password.errors?.['minlength']">Password should be minimum {{ password.errors?.['minlength'].requiredLength }} characters.</div>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input 
+      required 
+      ngModel 
+      name="confirmPassword"
+      #confirmPassword="ngModel"
+      type="password" 
+      class="form-control"
+      placeholder="Re-enter the password"/>
+      <div class="alert alert-danger" *ngIf="confirmPassword.touched && (confirmPassword.invalid || password.value !== confirmPassword.value)">
+        <div *ngIf="confirmPassword.errors?.['required']">Confirm password.</div>
+        <div *ngIf="password.value !== confirmPassword.value">Passwords dont match.</div>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>
