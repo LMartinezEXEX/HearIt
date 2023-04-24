@@ -7,8 +7,8 @@ Backend development was made with Spring Boot in a monolithic architecture, beca
 ### Set up MySQL databse
 
 This project connects to a MySQL database named `hearIt` and it is authenticated with the following credentials:
-- Username: hearItDBUser
-- Password: S3CRET_Password
+- Username: `hearItDBUser`
+- Password: `S3CRET_Password`
 
 The configuration of this setup is up to the user, needing to change spring.datasource.[url, username, password] properties in the `/application.yml` file.
 
@@ -75,4 +75,4 @@ $ npm install
 $ ng serve
 ```
 
-This will run on `localhost`, port `4200`. This should not be changed due to Spotify API redirection to this location.
+> This will run on `localhost`, port `4200`. This **should not be changed** due to Spotify API redirection to this location.
