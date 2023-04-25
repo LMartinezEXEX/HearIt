@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -32,9 +33,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SpotifyService {
 	
-	private static final String CLIENT_ID = "f7d4f571dfd34d208eb58310338ee6c3";
+	@Value("${hear-it.spotify.client-id}")
+	private String CLIENT_ID;
 	
-	private static final String CALLBACK = "http://localhost:8080/api/v1/spotify/auth/token";
+	@Value("${hear-it.spotify.callback-url}")
+	private String CALLBACK;
 	
 	private final RestTemplate restTemplate;
 	

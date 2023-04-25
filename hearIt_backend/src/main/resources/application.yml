@@ -18,3 +18,12 @@ spring:
     url: jdbc:mysql://localhost:3306/hearIt
     username: hearItDBUser
     password: S3CRET_Password
+    
+hear-it:
+   spotify:
+      client-id: f7d4f571dfd34d208eb58310338ee6c3
+      callback-url: http://localhost:8080/api/v1/spotify/auth/token
+   auth:
+      jwt:
+         secret-key: 2A462D4A614E645267556B586E3272357538782F413F4428472B4B6250655368
+         token-expiration-time: 3600

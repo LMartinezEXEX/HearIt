@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,11 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtService {
 	
-	private static final String SECRET_KEY = "2A462D4A614E645267556B586E3272357538782F413F4428472B4B6250655368";
+	@Value("${hear-it.auth.jwt.secret-key}")
+	private String SECRET_KEY;
+	
+	@Value("${hear-it.auth.jwt.token-expiration-time}")
+	private int expirationTime;
 
 	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);
@@ -37,12 +42,11 @@ public class JwtService {
 			Map<String, Object> extraCalims,
 			UserDetails userDetails
 	) {
-		
 		return Jwts.builder()
 				.setClaims(extraCalims)
 				.setSubject(userDetails.getUsername())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 3600))
+				.setExpiration(new Date(System.currentTimeMillis() + 1000 * expirationTime))
 				.signWith(getSignInKey(), SignatureAlgorithm.HS256)
 				.compact();
 	}
