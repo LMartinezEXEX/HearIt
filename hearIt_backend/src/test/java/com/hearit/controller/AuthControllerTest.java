@@ -95,6 +95,7 @@ public class AuthControllerTest {
 		LoginResponseDTO expected = new LoginResponseDTO().builder()
 				.id(0)
 				.token("aaaaaaa.eeeeeeeeee.ccccccccc")
+				.spotifyCode("testCode")
 				.accessUrl("url")
 				.build();
 		when(authService.authenticate(payload)).thenReturn(expected);

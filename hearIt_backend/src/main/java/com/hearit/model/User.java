@@ -38,6 +38,8 @@ public class User implements UserDetails {
 	private String username;
 	private String password;
 	
+	private String spotifyCode;
+	
 	@ElementCollection
 	@Builder.Default
 	private Set<String> favoriteTrackIds = new HashSet<>();

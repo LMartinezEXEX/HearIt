@@ -37,13 +37,13 @@ export class LoginComponent {
       next: (data) => {
         this.userService.setToken(data?.token);
         this.userService.setId(data?.id);
-
-        if (!this.cookies.check('us_' + data?.id + '_spotify_code')) {
-          window.location.href=data?.accessUrl;
-        } else {
-          this.spotifyService.getAccessToken(this.cookies.get('us_' + data?.id + '_spotify_code')).subscribe( data => {
-            this.cookies.set('spotify_access_token', data.access_token, data.expires_in);
+        
+        if (data?.spotifyCode) {
+          this.spotifyService.getAccessToken(data?.spotifyCode).subscribe( data => {
+            this.cookies.set('spotify_access_token', data?.access_token, data?.expires_in);
           });
+        } else {
+          window.location.href=data?.accessUrl;
         }
 
         this.router.navigateByUrl('/home');

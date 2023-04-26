@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,6 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hearit.dto.spotifyData.TrackDTO;
 import com.hearit.dto.spotifyData.TracksResponseDTO;
+import com.hearit.dto.user.SpotifyUserCodeDTO;
 import com.hearit.dto.user.TrackIdRequestDTO;
 import com.hearit.service.JwtService;
 import com.hearit.service.UserService;
@@ -138,6 +140,22 @@ public class UserControllerTest {
 		mockMvc.perform(
 				get(API_URL + "/tracks").header("spotify_access_token", "BQAasdasASDS")
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.accept(MediaType.APPLICATION_JSON_VALUE)
+		).andExpect(
+				status().isNoContent()
+		);
+	}
+	
+	@Test
+	public void successfulSaveUserSpotifyCode() throws Exception {
+		SpotifyUserCodeDTO payload = SpotifyUserCodeDTO.builder()
+				.spotifyCode("testCode")
+				.build();
+		
+		mockMvc.perform(
+				post(API_URL + "/spotifyCode")
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(mapper.writeValueAsString(payload))
 				.accept(MediaType.APPLICATION_JSON_VALUE)
 		).andExpect(
 				status().isNoContent()

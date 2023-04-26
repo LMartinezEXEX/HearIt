@@ -28,14 +28,15 @@ export class HomeComponent implements OnInit{
     ) {
         
         this.route.queryParams.subscribe(params => {
-            if(params['code'] && !this.cookies.check('us_' + this.userService.getId() + '_spotify_code')) {
-                this.cookies.set('us_' + this.userService.getId() + '_spotify_code', params['code'])
+            const code = params['code']
+
+            if (code) {
+                spotifyService.getAccessToken(code).subscribe( data => {
+                    this.cookies.set('spotify_access_token', data?.access_token, data?.expires_in);
+                })
+                this.userService.saveSpotifyCode({'spotifyCode': code}).subscribe();
+                this.router.navigate(['/home']);
             }
-            
-            spotifyService.getAccessToken(params['code']).subscribe( data => {
-                this.cookies.set('spotify_access_token', data.access_token, data.expires_in);
-            })
-            this.router.navigate(['/home']);
         });
 
         this.searchForm

@@ -69,6 +69,7 @@ public class AuthService {
 		return LoginResponseDTO.builder()
 				.id(user.getId())
 				.token(token)
+				.spotifyCode(user.getSpotifyCode())
 				.accessUrl(spotifyService.getAccesUrl())
 				.build();
 	}

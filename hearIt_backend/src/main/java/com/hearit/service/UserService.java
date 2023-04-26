@@ -1,5 +1,6 @@
 package com.hearit.service;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -7,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.hearit.dto.spotifyData.TracksResponseDTO;
+import com.hearit.dto.user.SpotifyUserCodeDTO;
 import com.hearit.dto.user.TrackIdRequestDTO;
 import com.hearit.model.User;
 import com.hearit.repository.UserRepository;
@@ -21,6 +23,18 @@ public class UserService {
 	private final UserRepository userRepository;
 	
 	private final SpotifyService spotifyService;
+	
+	public void saveSpotifyCode(
+			SpotifyUserCodeDTO request, 
+			Authentication auth
+	) {
+		User user = getUser(auth.getName());
+		if (Objects.isNull(user)) {
+			return;
+		}
+		user.setSpotifyCode(request.getSpotifyCode());
+		userRepository.save(user);
+	}
 	
 	public TracksResponseDTO getAllFavoritesTracks(
 			String accessToken,

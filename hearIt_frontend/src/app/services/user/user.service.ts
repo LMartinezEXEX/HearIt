@@ -55,6 +55,16 @@ export class UsersService {
         })
     }
 
+    saveSpotifyCode(code: any): Observable<any> {
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + this.cookies.get('token')
+        });
+
+        return this.http.post(this.api + "user/spotifyCode", code, {
+            headers: headers
+        })
+    }
+
     setId(id: number): void {
         this.cookies.set("us_id", String(id));
     }
