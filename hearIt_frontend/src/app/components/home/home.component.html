@@ -22,8 +22,9 @@
 
     <ng-container *ngIf="trackList?.length; else NoData;">
 
+        <h2 id="tracks">Tracks</h2>
         <div class="grid-container">
-            <div class="tracks-grid">
+            <div class="tracks-flex">
                 <div *ngFor="let _track of trackList">
                     <app-track-card [track]="_track"></app-track-card>
                 </div>

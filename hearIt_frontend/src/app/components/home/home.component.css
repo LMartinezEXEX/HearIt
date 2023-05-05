@@ -91,10 +91,17 @@
     text-decoration: underline;
 }
 
-.tracks-grid {
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 410px);
+#tracks {
+    color: #ba0000;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+}
+
+.tracks-flex {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     gap: 0.7rem;
 }
 

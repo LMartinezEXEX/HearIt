@@ -2,9 +2,25 @@
     <img src="{{this.image_url}}">
 
     <div class="data">
+
+        <button *ngIf="!playing_audio" (click)="play_pause(audio)">
+            <span class="material-symbols-outlined filled">
+                play_arrow
+            </span>
+        </button>
+        <button *ngIf="playing_audio" (click)="play_pause(audio)">
+            <span class="material-symbols-outlined filled">
+                pause
+            </span>
+        </button>
+
+        <p class="duration">{{duration}}</p>
         <p class="name">{{name}}</p>
         <p class="artist">{{artist}}</p>
         <p class="album">{{album_name}}</p>
+        <audio #audio (ended)="this.playing_audio = false">
+            <source src="{{preview_url}}" type="audio/mpeg" />
+        </audio>
     </div>
 
     <span *ngIf="!isFavorite" (click)="addFavorite()" class="material-symbols-outlined favorite">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { millisToMinutesAndSeconds } from "src/app/helpers/utils";
 import { UsersService } from "src/app/services/user/user.service";
 
 @Component({
@@ -14,6 +15,8 @@ export class TrackCard implements OnInit {
     public name: string;
     public artist: string;
     public popularity: number;
+    public duration: string;
+    public preview_url: string;
     public album_name: string;
 
     public image_url: string;
@@ -23,10 +26,13 @@ export class TrackCard implements OnInit {
     constructor(private userService: UsersService) {}
 
     ngOnInit(): void {
+        console.log(this.track);
         this.id = this.track?.id;
         this.name = this.track?.name;
         this.artist = this.track?.artists.map((art: any) => art.name).join(" & ");
         this.popularity = this.track?.popularity;
+        this.duration = millisToMinutesAndSeconds(this.track?.duration_ms);
+        this.preview_url = this.track?.preview_url;
         this.album_name = this.track?.album?.name;
 
         this.image_url = (this.track?.artists[0]?.images) ? this.track?.artists[0]?.images[0]?.url :
@@ -52,5 +58,16 @@ export class TrackCard implements OnInit {
                 this.isFavorite = false;
             }
         })
+    }
+
+    playing_audio: boolean;
+    play_pause(audio:HTMLAudioElement) {
+        if (audio.paused) {
+            this.playing_audio = true;
+            audio.play();
+        } else {
+            audio.pause();
+            this.playing_audio = false;
+        }
     }
 }
